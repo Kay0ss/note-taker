@@ -24,12 +24,12 @@ app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, './public/notes.html'))
 );
 
-// app.get('*', (req, res) =>
-//     res.sendFile(path.join(__dirname, './public/index.html'))
-// );
+app.get('*', (req, res) =>
+    res.sendFile(path.join(__dirname, './public/index.html'))
+);
 
 app.get('/api/notes', (req, res) => {
-    res.json(globalData);
+    res.JSON(global);
     console.log('line 32 ' + JSON.stringify(global));
 });
 
@@ -40,12 +40,12 @@ app.post('/api/notes', (req, res) => {
     global.push(currData);
 
     fs.writeFile('./db/db.json', JSON.stringify(global), (err) => {
-        err ? console.log(err) : console.log('Success!')
+        err ? console.error(err) : console.log('Success!')
     },
-        console.log(' line 38' + JSON.stringify(global))
+        console.log('line 38' + JSON.stringify(global))
     );
 
-    res.json(global)
+    res.JSON(global);
 });
 
 
